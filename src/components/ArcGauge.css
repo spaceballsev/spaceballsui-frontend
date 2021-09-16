@@ -1,0 +1,13 @@
+.gauge-container {
+    text-align: center;
+}
+.gauge-container .value-title{
+    font-weight: bold;
+}
+.gauge-container .dial {
+    stroke-width: 15;
+}
+
+.gauge-container .value {
+    stroke-width: 13;
+}
