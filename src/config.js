@@ -8,6 +8,11 @@ const config = {
             min: 0,
             max: 100,
             type: "arc"
+        },{
+            key: "charger_status",
+            min: -400,
+            max: 400,
+            type: "arc"
         }]
     }]
 }
