@@ -8,6 +8,36 @@
     stroke-width: 15;
 }
 
+.gauge-container .value-title {
+    font-size: 2em;
+}
+
 .gauge-container .value {
     stroke-width: 13;
+}
+
+/* Dark Theme */
+body.dark .gauge-container {
+    background-color: #222;
+}
+
+body.dark .gauge-container .dial {
+    stroke: #5a5a5a;
+}
+
+body.dark .gauge-container .value-title {
+    color: #999;
+}
+
+/* Light Theme */
+body.light .gauge-container {
+    background-color: #d0d0d0;
+}
+
+body.light .gauge-container .dial {
+    stroke: #999;
+}
+
+body.light .gauge-container .value-title {
+    color: #999;
 }

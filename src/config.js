@@ -1,9 +1,10 @@
 const config = {
     websocketURI: "ws://localhost:6789",
-    backgroundColor: '#000000',
+    theme: 'dark',
     pages: [{
         title: "",
-        cols: 3,
+        cols: 6,
+        rowHeight: "300px",
         gauges: [{
             key: "state_of_charge",
             min: 0,
@@ -13,6 +14,7 @@ const config = {
             type: "arc",
             title: "State of Charge",
             unit: '%',
+            colSpan: 2,
             colors: [{
                 start: 0,
                 end: 14,
@@ -34,7 +36,27 @@ const config = {
             dialStartAngle: 180,
             dialEndAngle: -90,
             type: "arc",
-            unit: 'A'
+            unit: 'A',
+            colSpan: 2,
+            colors: [{
+                start: 0,
+                end: 40,
+                color:'#00ff3d'
+            }]
+        }, {
+            key: "temperature",
+            type: "combined_tempertaure",
+            title: "Temperatures",
+            colSpan: 1,
+            data: [{
+                key: 'motor_temperature',
+                ok_min: 10,
+                ok_max: 50
+            }, {
+                key: 'inverter_temperature',
+                ok_min: 10,
+                ok_max: 80
+            }]
         }]
     }]
 }

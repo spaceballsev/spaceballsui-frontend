@@ -1,0 +1,18 @@
+.CombinedTemperature .icon {
+    margin-top: 35px;
+}
+.CombinedTemperature .icon.ok {
+    fill: #2d8a03
+}
+
+.CombinedTemperature .icon.warn {
+    fill: #c1b813
+}
+
+.CombinedTemperature .icon.stop {
+    fill: #a01818
+}
+
+.CombinedTemperature .icon.low {
+    fill: #0c67a2
+}

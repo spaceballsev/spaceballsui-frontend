@@ -1,7 +1,6 @@
 import React from "react";
 import Datastream from '../Datastream';
 import './ArcGauge.css';
-import SvgGauge from "svg-gauge";
 
 const defaultOptions = {
     animDuration: 1,
@@ -11,7 +10,7 @@ const defaultOptions = {
     // Put any other defaults you want. e.g. dialStartAngle, dialEndAngle, radius, etc.
   };
 
-class ArcGauge extends React.Component {
+class LinearGauge extends React.Component {
 
     constructor(props) {
         super(props);
@@ -23,34 +22,12 @@ class ArcGauge extends React.Component {
     recieveValue(data) {
         if (data.key === this.props.config.key) {
             this.setState({value: data.value})
-            this.gaugeRef.setValue(this.state.value)
-
         }
     
     }
 
     componentDidMount() {
         this.subscriptionId = Datastream.subscribe(this.recieveValue);
-        const options = { ...defaultOptions, ...this.props.config };
-
-        if (options.colors) {
-            options.color = function(value) {
-                var color 
-                options.colors.forEach(function(c) {
-                    if (value <= c.end && value >= c.start) {
-                        color = c.color
-                    }
-                })
-                return color
-            }
-        }
-
-        if (options.unit) {
-            options.label = function(value) {
-                return value + options.unit
-            }
-        }
-        this.gaugeRef = SvgGauge(this.gaugeElRef.current, options)
 
     }
 
@@ -61,14 +38,21 @@ class ArcGauge extends React.Component {
     }
 
     render() {
+        const value= 30;
+        const max = 120;
+        const min = 0;    
+
         return (
-            <div className="gauge-container" style={{height:this.props.rowHeight, gridColumnStart:"span " + this.props.config.colSpan}}>
+            <div className="gauge-container">
                 <span className="value-title">{this.props.config.title}</span>
-                <div ref={this.gaugeElRef}>
-                </div>
+                <svg viewBox="0 0 100 50">
+                    <line x1="30" y1="10" x2="30" y2="80" style={{"stroke":"rgb(255,0,0)", "strokeWidth":15, "stroke": '#eee'}} />
+                    <line x1="30" y1="30" x2="30" y2="80" style={{"stroke":"rgb(255,0,0)", "strokeWidth":13, "stroke": '#333'}} />
+
+                </svg>
             </div>
         );
     }
 }
 
-export default ArcGauge
+export default LinearGauge
