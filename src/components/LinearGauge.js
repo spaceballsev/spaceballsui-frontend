@@ -38,17 +38,28 @@ class LinearGauge extends React.Component {
     }
 
     render() {
-        const value= 30;
-        const max = 120;
-        const min = 0;    
+        //calculate value as a percentage of range
+        const valuePercentage = this.state.value / (this.props.config.max - this.props.config.min)
+        //y2 - y1
+        const steps = (100 - 10) * valuePercentage
+
+        let colour = '#fff'
+        if (this.props.config.colors) {
+            this.props.config.colors.forEach(function(c) {
+                if (this.state.value >= c.start && this.state.value <= c.end) {
+                    colour = c.color
+                    return
+                }
+            }, this)
+        }
 
         return (
             <div className="gauge-container">
                 <span className="value-title">{this.props.config.title}</span>
-                <svg viewBox="0 0 100 50">
-                    <line x1="30" y1="10" x2="30" y2="80" style={{"stroke":"rgb(255,0,0)", "strokeWidth":15, "stroke": '#eee'}} />
-                    <line x1="30" y1="30" x2="30" y2="80" style={{"stroke":"rgb(255,0,0)", "strokeWidth":13, "stroke": '#333'}} />
-
+                <svg viewBox="0 0 100 100">
+                    <line className="dial" x1="30" y1="10" x2="30" y2="100" style={{ "strokeWidth":30}} />
+                    <line x1="30" y1={100 - steps} x2="30" y2="100" style={{"strokeWidth":25, "stroke": colour }} />
+                    <text x="70" y="50" fill="#999" className="value-text" fontSize="100%" fontFamily="sans-serif" fontWeight="normal" textAnchor="middle" alignmentBaseline="middle" dominantBaseline="central">{this.state.value}{this.props.config.unit}</text>
                 </svg>
             </div>
         );

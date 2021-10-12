@@ -7,7 +7,10 @@ const defaultOptions = {
     animDuration: 1,
     showValue: true,
     initialValue: 0,
-    max: 100
+    dialStartAngle: 180,
+    dialEndAngle: 0,
+    max: 100,
+    viewBox: "0 0 100 60"
     // Put any other defaults you want. e.g. dialStartAngle, dialEndAngle, radius, etc.
   };
 

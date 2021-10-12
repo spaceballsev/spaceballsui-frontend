@@ -1,5 +1,5 @@
 const config = {
-    websocketURI: "ws://localhost:6789",
+    websocketURI: "ws://" + window.location.hostname + ":6789",
     theme: 'dark',
     pages: [{
         title: "",
@@ -9,8 +9,6 @@ const config = {
             key: "state_of_charge",
             min: 0,
             max: 100,
-            dialStartAngle: 180,
-            dialEndAngle: 0,
             type: "arc",
             title: "State of Charge",
             unit: '%',
@@ -32,16 +30,18 @@ const config = {
             title: "Charging Current",
             key: "charging_current",
             min: 0,
-            max: 40,
-            dialStartAngle: 180,
-            dialEndAngle: -90,
-            type: "arc",
+            max: 10,
+            type: "linear",
             unit: 'A',
-            colSpan: 2,
+            colSpan: 1,
             colors: [{
                 start: 0,
-                end: 40,
+                end: 5,
                 color:'#00ff3d'
+            },{
+                start: 6,
+                end: 10,
+                color:'#a01818'
             }]
         }, {
             key: "temperature",
